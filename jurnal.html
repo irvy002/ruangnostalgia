@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jurnal - Ruang Nostalgia (A Space for the Unbound)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="logo">Ruang Nostalgia</div>
+        <nav class="nav-links">
+            <a href="index.html">Beranda</a>
+            <a href="jurnal.html" class="active">Jurnal</a>
+            </nav>
+    </header>
+
+    <div class="jurnal-page-wrapper">
+        <main class="jurnal-header mading-style">
+            <div class="mading-paper">
+                <div class="pin top-left"></div>
+                <div class="pin top-right"></div>
+                <h1>Arsip Jurnal & Analisis</h1>
+                <p>Kumpulan tulisan mendalam tentang narasi, psikologi, estetika, dan desain game A Space for the Unbound.</p>
+            </div>
+        </main>
+
+        <div class="decor-polaroid decor-left" id="polaroid-zoom-trigger">
+            <div class="tape top-center"></div>
+            <div class="photo-content">
+                <div class="photo-img"></div>
+                <p class="caption">Atma, '98</p>
+                <div class="character-desc">
+                    <p>Seorang siswa SMA dengan kekuatan supranatural "Space Dive". Menggunakan Buku Merah magisnya, ia dapat menyelami pikiran orang lain untuk menyembuhkan trauma dan ketakutan terdalam mereka.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="decor-polaroid decor-right" id="polaroid-2-zoom-trigger">
+            <div class="tape top-center"></div>
+            <div class="photo-content">
+                <div class="photo-img photo-2"></div>
+                <p class="caption">Raya, '98</p>
+                <div class="character-desc">
+                    <p>Kekasih Atma yang ceria namun menyimpan luka batin yang kelam. Ia memiliki kemampuan luar biasa mengubah realitas yang perlahan mulai mengancam eksistensi kota Loka.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="decor-sticky">
+            <div class="pin center"></div>
+            <p>Jangan lupa kasih makan Admiral! 🐈</p>
+        </div>
+    </div>
+
+    <!-- Character Modal Overlay -->
+    <div id="char-modal" class="char-modal-overlay" role="dialog" aria-modal="true" aria-label="Profil Karakter">
+        <div class="char-modal-card" id="char-modal-card">
+            <div class="modal-tape"></div>
+            <div class="modal-photo" id="modal-photo"></div>
+            <p class="modal-caption" id="modal-caption"></p>
+            <hr class="modal-divider">
+            <p class="modal-desc" id="modal-desc"></p>
+            <span class="modal-close-hint">Klik di mana saja untuk menutup</span>
+        </div>
+    </div>
+
+    <section class="latest-articles">
+        <div class="articles-grid">
+            <a href="baca-artikel.html" class="article-card" data-kategori="psikologi">
+                <div class="card-image-placeholder" style="background-image: url('images/atma-raya.jpg'); background-size: cover; background-position: center;">
+                </div>
+                <div class="card-content">
+                    <h3>Menyelami Kedewasaan Emosional Atma & Raya</h3>
+                    <p>Bedah narasi mendalam mengenai bagaimana game ini menggambarkan trauma masa lalu, kesehatan mental, dan penerimaan diri.</p>
+                    <span class="read-more">Baca Selengkapnya &rarr;</span>
+                </div>
+            </a>
+
+            <a href="artikel-visual.html" class="article-card" data-kategori="desain-visual">
+                <div class="card-image-placeholder" style="background-image: url('images/senja-kota.jpg'); background-size: cover; background-position: center;">
+                </div>
+                <div class="card-content">
+                    <h3>Pixel Art: Menghidupkan Nuansa Senja Jawa Timur</h3>
+                    <p>Analisis teknik pewarnaan (color grading) yang berhasil membangkitkan memori lokal era 90-an yang sangat hangat dan familier.</p>
+                    <span class="read-more">Baca Selengkapnya &rarr;</span>
+                </div>
+            </a>
+
+            <a href="artikel-musik.html" class="article-card" data-kategori="musik">
+                <div class="card-image-placeholder" style="background-image: url('images/kucing-retro.jpg'); background-size: cover; background-position: center;">
+                </div>
+                <div class="card-content">
+                    <h3>Melodi Pendukung Rasa Sakit dan Kebahagiaan</h3>
+                    <p>Ulasan soundtrack latar yang secara ajaib mampu melipatgandakan emosi pemain di setiap adegan krusial dan mendalam.</p>
+                    <span class="read-more">Baca Selengkapnya &rarr;</span>
+                </div>
+            </a>
+
+            <a href="artikel-game.html" class="article-card" data-kategori="desain-game">
+                <div class="card-image-placeholder" style="background-image: url('images/space-dive-rift.jpg'); background-size: cover; background-position: center;">
+                </div>
+                <div class="card-content">
+                    <h3>Mekanika Space Dive sebagai Representasi Empati</h3>
+                    <p>Tinjauan interaktif mengenai bagaimana mengintip pikiran karakter lain di dalam game mencerminkan kerentanan dan empati manusia.</p>
+                    <span class="read-more">Baca Selengkapnya &rarr;</span>
+                </div>
+            </a>
+
+            <a href="artikel-isolasi.html" class="article-card" data-kategori="psikologi">
+                <div class="card-image-placeholder" style="background-image: url('images/lone-wolf-hero.png'); background-size: cover; background-position: center; filter: grayscale(50%) sepia(30%);">
+                </div>
+                <div class="card-content">
+                    <h3>Mengurai "Lone Wolf" di Balik Magis Raya</h3>
+                    <p>Analisis psikologis tentang bagaimana trauma memicu isolasi diri, dan mengapa kita tidak bisa memikul beban sendirian.</p>
+                    <span class="read-more">Baca Selengkapnya &rarr;</span>
+                </div>
+            </a>
+
+            <a href="artikel-komunitas.html" class="article-card" data-kategori="narasi">
+                <div class="card-image-placeholder" style="background-image: url('images/isometric-night-market.png'); background-size: cover; background-position: center; transform: scaleX(-1);">
+                </div>
+                <div class="card-content">
+                    <h3>Denyut Nadi Komunitas Lokal Kota Loka</h3>
+                    <p>Melihat bagaimana interaksi dengan warga sekitar dan pedagang kecil menciptakan ruang aman bagi stabilitas mental remaja.</p>
+                    <span class="read-more">Baca Selengkapnya &rarr;</span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2026 Ruang Nostalgia. Dibuat dengan penuh memori. | Kode sumber tersedia di <a href="https://github.com" target="_blank" style="color: var(--senja-kuning); text-decoration: underline;">GitHub</a></p>
+    </footer>
+
+    <script src="script.js"></script>
+    <!-- Interactive Easter Egg: Pet the Cat -->
+    <div id="retro-cat" class="retro-cat" title="Kucing jalanan yang sedang tidur...">
+        <span class="cat-emoji">🐈</span>
+        <span class="cat-zzz">zZ</span>
+        <div class="cat-tooltip">Meow~ Kamu menemukan Admiral!</div>
+    </div>
+    <!-- Back to Top Button (Checklist 2.2) -->
+    <button id="btn-top" class="btn-top" title="Kembali ke Atas">↑</button>
+</body>
+
+</html>
