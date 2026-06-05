@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karakter - Ruang Nostalgia (A Space for the Unbound)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ── KARAKTER PAGE — FIXED POLAROID LAYOUT ── */
+        .karakter-page-wrapper {
+            padding: 60px 8% 120px;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .karakter-header {
+            margin-bottom: 70px;
+        }
+        .karakter-header h1 {
+            font-size: 2.4rem;
+            color: var(--teks-utama);
+            margin-bottom: 10px;
+        }
+        .karakter-header p {
+            color: var(--teks-pudar);
+            font-size: 1.1rem;
+        }
+
+        /* Gallery: flex row, centered */
+        .karakter-gallery {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        /* ── POLAROID: reset all conflicting rules, define cleanly ── */
+        .karakter-gallery .polaroid-card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 14px 14px 36px 14px;
+            width: 230px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.04);
+            cursor: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cline x1='9' y1='9' x2='24' y2='24' stroke='%23E76F51' stroke-width='3.5' stroke-linecap='round'/%3E%3Cline x1='9.5' y1='9.5' x2='23.5' y2='23.5' stroke='%23FF85A1' stroke-width='1.5' stroke-linecap='round'/%3E%3Ccircle cx='24' cy='24' r='2.5' fill='%23F4A261' stroke='%232C2520' stroke-width='0.5'/%3E%3Ccircle cx='9' cy='9' r='2.5' fill='%23F4A261' stroke='%232C2520' stroke-width='0.5'/%3E%3Cpath d='M 8 1 L 10 5.5 L 15 6 L 11 9.5 L 12.5 14.5 L 8 12 L 3.5 14.5 L 5 9.5 L 1 6 L 6 5.5 Z' fill='%23FFD166' stroke='%232C2520' stroke-width='1' stroke-linejoin='round'/%3E%3Cpath d='M 8 3.5 L 9.2 6.2 L 12.2 6.5 L 9.8 8.6 L 10.7 11.6 L 8 10 L 5.3 11.6 L 6.2 8.6 L 3.8 6.5 L 6.8 6.2 Z' fill='%23FFF' opacity='0.6'/%3E%3Ccircle cx='8' cy='8' r='2' fill='%232A9D8F'/%3E%3C/svg%3E") 8 1, pointer !important;
+            animation: spaceFloat 6s ease-in-out infinite;
+            transition: box-shadow 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .karakter-gallery .polaroid-card,
+        .karakter-gallery .polaroid-card * {
+            cursor: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cline x1='9' y1='9' x2='24' y2='24' stroke='%23E76F51' stroke-width='3.5' stroke-linecap='round'/%3E%3Cline x1='9.5' y1='9.5' x2='23.5' y2='23.5' stroke='%23FF85A1' stroke-width='1.5' stroke-linecap='round'/%3E%3Ccircle cx='24' cy='24' r='2.5' fill='%23F4A261' stroke='%232C2520' stroke-width='0.5'/%3E%3Ccircle cx='9' cy='9' r='2.5' fill='%23F4A261' stroke='%232C2520' stroke-width='0.5'/%3E%3Cpath d='M 8 1 L 10 5.5 L 15 6 L 11 9.5 L 12.5 14.5 L 8 12 L 3.5 14.5 L 5 9.5 L 1 6 L 6 5.5 Z' fill='%23FFD166' stroke='%232C2520' stroke-width='1' stroke-linejoin='round'/%3E%3Cpath d='M 8 3.5 L 9.2 6.2 L 12.2 6.5 L 9.8 8.6 L 10.7 11.6 L 8 10 L 5.3 11.6 L 6.2 8.6 L 3.8 6.5 L 6.8 6.2 Z' fill='%23FFF' opacity='0.6'/%3E%3Ccircle cx='8' cy='8' r='2' fill='%232A9D8F'/%3E%3C/svg%3E") 8 1, pointer !important;
+        }
+        .karakter-gallery .polaroid-card:nth-child(2) {
+            animation-delay: -3s;
+        }
+        .karakter-gallery .polaroid-card:hover {
+            animation-play-state: paused;
+            box-shadow: 0 20px 55px rgba(231, 111, 81, 0.2), inset 0 0 20px rgba(255,255,255,0.06);
+            transform: translateY(-6px) scale(1.02);
+        }
+
+        /* Tape strip */
+        .polaroid-card .tape {
+            position: absolute;
+            top: -14px;
+            left: calc(50% - 35px);
+            width: 70px;
+            height: 24px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(4px);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.25);
+            transform: rotate(2deg);
+            pointer-events: none;
+        }
+
+        /* Photo area — FIXED size */
+        .polaroid-card .photo-img {
+            width: 100%;
+            height: 220px;
+            background-size: cover !important;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            display: block;
+        }
+        .polaroid-card .photo-img.atma {
+            background-image: url('images/foto-kiri.jpg') !important;
+        }
+        .polaroid-card .photo-img.raya {
+            background-image: url('images/foto-kanan.jpg') !important;
+        }
+
+        /* Caption */
+        .polaroid-card .caption {
+            font-family: 'Lora', Georgia, serif;
+            font-style: italic;
+            font-size: 0.9rem;
+            text-align: center;
+            margin-top: 12px;
+            color: var(--teks-utama);
+            letter-spacing: 0.3px;
+        }
+
+        /* Character desc — hidden, shown in modal */
+        .polaroid-card .character-desc {
+            display: none;
+        }
+
+        /* ── STICKY NOTE ── */
+        .karakter-gallery .sticky-note {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(244, 162, 97, 0.12);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(244, 162, 97, 0.3);
+            border-top: 1px solid rgba(244, 162, 97, 0.5);
+            padding: 24px 20px;
+            width: 180px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), inset 0 0 15px rgba(244, 162, 97, 0.08);
+            animation: spaceFloatCenter 7s ease-in-out infinite;
+            transition: box-shadow 0.3s ease;
+            align-self: center;
+        }
+        .sticky-note:hover {
+            animation-play-state: paused;
+        }
+        .sticky-note .pin {
+            width: 14px;
+            height: 14px;
+            background: var(--senja-jingga);
+            box-shadow: 0 0 10px var(--senja-jingga), 0 0 20px var(--senja-jingga), inset 0 0 4px #FFF;
+            border-radius: 50%;
+            position: absolute;
+            top: -7px;
+            left: calc(50% - 7px);
+            z-index: 10;
+        }
+        .sticky-note p {
+            font-family: 'Lora', Georgia, serif;
+            font-style: italic;
+            font-size: 0.9rem;
+            color: var(--teks-utama);
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .karakter-gallery {
+                flex-direction: column;
+                align-items: center;
+                gap: 40px;
+            }
+            .karakter-gallery .polaroid-card {
+                width: 80%;
+                max-width: 260px;
+                animation: none;
+            }
+            .karakter-gallery .sticky-note {
+                width: 80%;
+                max-width: 220px;
+                animation: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo">Ruang Nostalgia</div>
+        <nav class="nav-links">
+            <a href="index.html">Beranda</a>
+            <a href="jurnal.html">Jurnal</a>
+            <a href="karakter.html" class="active">Karakter</a>
+        </nav>
+    </header>
+
+    <main class="karakter-page-wrapper">
+        <div class="karakter-header">
+            <h1>Arsip Karakter</h1>
+            <p>Mengenal lebih dekat jiwa-jiwa yang terhubung di kota Loka.</p>
+        </div>
+
+        <div class="karakter-gallery">
+            <!-- Polaroid Atma -->
+            <div class="polaroid-card" id="polaroid-atma" tabindex="0" role="button" aria-label="Lihat profil Atma">
+                <div class="tape"></div>
+                <div class="photo-img atma"></div>
+                <p class="caption">Atma, '98</p>
+                <div class="character-desc">
+                    <p>Seorang siswa SMA dengan kekuatan supranatural "Space Dive". Menggunakan Buku Merah magisnya, ia dapat menyelami pikiran orang lain untuk menyembuhkan trauma dan ketakutan terdalam mereka.</p>
+                </div>
+            </div>
+
+            <!-- Polaroid Raya -->
+            <div class="polaroid-card" id="polaroid-raya" tabindex="0" role="button" aria-label="Lihat profil Raya">
+                <div class="tape"></div>
+                <div class="photo-img raya"></div>
+                <p class="caption">Raya, '98</p>
+                <div class="character-desc">
+                    <p>Kekasih Atma yang ceria namun menyimpan luka batin yang kelam. Ia memiliki kemampuan luar biasa mengubah realitas yang perlahan mulai mengancam eksistensi kota Loka.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Character Modal -->
+    <div id="char-modal" class="char-modal-overlay" role="dialog" aria-modal="true" aria-label="Profil Karakter">
+        <div class="char-modal-card" id="char-modal-card">
+            <div class="modal-tape"></div>
+            <div class="modal-photo" id="modal-photo"></div>
+            <p class="modal-caption" id="modal-caption"></p>
+            <hr class="modal-divider">
+            <p class="modal-desc" id="modal-desc"></p>
+            <span class="modal-close-hint">Klik di mana saja untuk menutup</span>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 Ruang Nostalgia. Dibuat dengan penuh memori. | Kode sumber tersedia di <a href="https://github.com" target="_blank" style="color: var(--senja-kuning); text-decoration: underline;">GitHub</a></p>
+    </footer>
+
+    <div id="retro-cat" class="retro-cat" title="Kucing jalanan yang sedang tidur...">
+        <span class="cat-emoji">🐈</span>
+        <span class="cat-zzz">zZ</span>
+        <div class="cat-tooltip">Meow~ Kamu menemukan Admiral!</div>
+    </div>
+    <button id="btn-top" class="btn-top" title="Kembali ke Atas">↑</button>
+
+    <script src="script.js"></script>
+    <script>
+    // ── KARAKTER MODAL (fresh implementation, no dependency on old decor-polaroid logic) ──
+    const charModal = document.getElementById('char-modal');
+    const modalPhoto = document.getElementById('modal-photo');
+    const modalCaption = document.getElementById('modal-caption');
+    const modalDesc = document.getElementById('modal-desc');
+    const modalCard = document.getElementById('char-modal-card');
+
+    const characters = {
+        'polaroid-atma': {
+            img: "url('images/foto-kiri.jpg')",
+            caption: 'Atma, \'98',
+            desc: 'Seorang siswa SMA dengan kekuatan supranatural "Space Dive". Menggunakan Buku Merah magisnya, ia dapat menyelami pikiran orang lain untuk menyembuhkan trauma dan ketakutan terdalam mereka.'
+        },
+        'polaroid-raya': {
+            img: "url('images/foto-kanan.jpg')",
+            caption: 'Raya, \'98',
+            desc: 'Kekasih Atma yang ceria namun menyimpan luka batin yang kelam. Ia memiliki kemampuan luar biasa mengubah realitas yang perlahan mulai mengancam eksistensi kota Loka.'
+        }
+    };
+
+    function openModal(id) {
+        const data = characters[id];
+        if (!data) return;
+
+        modalPhoto.style.backgroundImage = data.img;
+        modalPhoto.style.backgroundSize = 'cover';
+        modalPhoto.style.backgroundPosition = 'center';
+        modalCaption.textContent = data.caption;
+        modalDesc.textContent = data.desc;
+
+        // Reset animation state
+        modalDesc.style.transition = 'none';
+        modalDesc.style.opacity = '0';
+        modalDesc.style.transform = 'translateY(6px)';
+        modalCard.style.transition = 'none';
+        modalCard.style.transform = 'scale(0.7) translateY(20px)';
+        modalCard.style.opacity = '0';
+
+        charModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+            modalCard.style.transition = '';
+            modalCard.style.transform = '';
+            modalCard.style.opacity = '';
+            modalDesc.style.transition = '';
+            modalDesc.style.opacity = '';
+            modalDesc.style.transform = '';
+        }));
+    }
+
+    ['polaroid-atma', 'polaroid-raya'].forEach(id => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.addEventListener('click', () => openModal(id));
+        el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openModal(id); });
+    });
+
+    charModal.addEventListener('click', () => {
+        charModal.classList.remove('active');
+        document.body.style.overflow = '';
+    });
+    modalCard.addEventListener('click', e => e.stopPropagation());
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') {
+            charModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+    </script>
+</body>
+
+</html>

@@ -1,156 +1,441 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jurnal - Ruang Nostalgia (A Space for the Unbound)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:wght@400;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* ── JURNAL HERO ── */
+        .jurnal-hero {
+            padding: 70px 8% 0;
+            text-align: center;
+        }
+        .jurnal-hero-tag {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--langit-biru);
+            font-weight: bold;
+            display: block;
+            margin-bottom: 14px;
+        }
+        .jurnal-hero h1 {
+            font-size: 2.8rem;
+            color: var(--teks-utama);
+            line-height: 1.2;
+            margin-bottom: 14px;
+        }
+        .jurnal-hero p {
+            color: var(--teks-pudar);
+            font-size: 1.05rem;
+            max-width: 560px;
+            margin: 0 auto 32px;
+        }
+        .jurnal-divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(to right, var(--senja-jingga), var(--langit-biru));
+            margin: 0 auto 50px;
+            border: none;
+        }
+
+
+        /* ── FEATURED ARTICLE ── */
+        .featured-wrap {
+            padding: 0 8%;
+            max-width: 1200px;
+            margin: 0 auto 70px;
+        }
+        .featured-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            font-weight: bold;
+            color: var(--senja-kuning);
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .featured-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border-garis);
+        }
+        .featured-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            background: var(--bg-kartu);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-garis);
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s;
+        }
+        .featured-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 30px 80px rgba(231, 111, 81, 0.15);
+        }
+        .featured-image {
+            position: relative;
+            min-height: 340px;
+            background: linear-gradient(135deg, rgba(231,111,81,0.5), rgba(42,157,143,0.4)),
+                        url('images/atma-raya.jpg') center/cover no-repeat;
+            overflow: hidden;
+        }
+        .featured-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, transparent 70%, var(--bg-kartu));
+        }
+        .featured-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--senja-jingga);
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            z-index: 2;
+        }
+        .featured-body {
+            padding: 45px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 16px;
+        }
+        .featured-category {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: bold;
+            color: var(--langit-biru);
+        }
+        .featured-body h2 {
+            font-size: 1.9rem;
+            line-height: 1.3;
+            color: var(--teks-utama);
+        }
+        .featured-body p {
+            font-size: 1rem;
+            color: var(--teks-pudar);
+            line-height: 1.7;
+        }
+        .featured-read {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--senja-jingga);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.88rem;
+            font-weight: bold;
+            margin-top: 6px;
+            transition: gap 0.3s;
+        }
+        .featured-card:hover .featured-read { gap: 14px; }
+        .featured-read::after { content: '→'; }
+
+        /* ── ALL ARTICLES GRID ── */
+        .jurnal-grid-section {
+            padding: 0 8% 100px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-header-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+        .section-header-row h2 {
+            font-size: 1.4rem;
+            color: var(--teks-utama);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .section-header-row h2::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border-garis);
+            min-width: 40px;
+        }
+
+        /* ── ARTICLE CARDS ── */
+        .articles-grid-v2 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+        .article-card-v2 {
+            background: var(--bg-kartu);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-garis);
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.35s, border-color 0.3s;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            opacity: 0;
+            transform: translateY(22px);
+        }
+        .article-card-v2.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                        box-shadow 0.35s, border-color 0.3s;
+        }
+        .article-card-v2:hover {
+            transform: translateY(-7px) !important;
+            box-shadow: 0 16px 45px rgba(231, 111, 81, 0.12);
+            border-color: rgba(231, 111, 81, 0.3);
+        }
+        .card-thumb {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background-size: cover !important;
+            background-position: center !important;
+            position: relative;
+            overflow: hidden;
+        }
+        .card-thumb::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(29,29,49,0.9) 0%, transparent 55%);
+            transition: opacity 0.3s;
+        }
+        .article-card-v2:hover .card-thumb::after { opacity: 0.6; }
+        .card-thumb-category {
+            position: absolute;
+            bottom: 12px;
+            left: 14px;
+            z-index: 2;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.68rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: white;
+            background: var(--langit-biru);
+            padding: 3px 10px;
+            border-radius: 10px;
+        }
+        .card-body-v2 {
+            padding: 22px 22px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            flex: 1;
+        }
+        .card-body-v2 h3 {
+            font-size: 1.12rem;
+            line-height: 1.4;
+            color: var(--teks-utama);
+            transition: color 0.3s;
+        }
+        .article-card-v2:hover .card-body-v2 h3 { color: var(--senja-kuning); }
+        .card-body-v2 p {
+            font-size: 0.87rem;
+            color: var(--teks-pudar);
+            line-height: 1.65;
+            flex: 1;
+        }
+        .card-footer-v2 {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 8px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border-garis);
+        }
+        .card-read-link {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: var(--senja-jingga);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: gap 0.3s, color 0.3s;
+        }
+        .card-read-link::after { content: '→'; }
+        .article-card-v2:hover .card-read-link { gap: 10px; }
+        .card-tag {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.67rem;
+            color: var(--teks-pudar);
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border-garis);
+            padding: 2px 9px;
+            border-radius: 8px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .featured-card { grid-template-columns: 1fr; }
+            .featured-image { min-height: 220px; }
+            .featured-image::after { background: linear-gradient(to bottom, transparent 50%, var(--bg-kartu)); }
+            .articles-grid-v2 { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 640px) {
+            .jurnal-hero h1 { font-size: 2rem; }
+            .articles-grid-v2 { grid-template-columns: 1fr; }
+            .featured-body { padding: 28px 22px; }
+            .featured-body h2 { font-size: 1.45rem; }
+        }
+    </style>
 </head>
-
 <body>
-
     <header class="navbar">
         <div class="logo">Ruang Nostalgia</div>
         <nav class="nav-links">
             <a href="index.html">Beranda</a>
             <a href="jurnal.html" class="active">Jurnal</a>
-            </nav>
+            <a href="karakter.html">Karakter</a>
+        </nav>
     </header>
 
-    <div class="jurnal-page-wrapper">
-        <main class="jurnal-header mading-style">
-            <div class="mading-paper">
-                <div class="pin top-left"></div>
-                <div class="pin top-right"></div>
-                <h1>Arsip Jurnal & Analisis</h1>
-                <p>Kumpulan tulisan mendalam tentang narasi, psikologi, estetika, dan desain game A Space for the Unbound.</p>
+    <!-- Hero -->
+    <section class="jurnal-hero">
+        <span class="jurnal-hero-tag">✦ Arsip Tulisan</span>
+        <h1>Jurnal & Analisis</h1>
+        <p>Kumpulan renungan mendalam tentang narasi, psikologi, estetika, dan desain di balik <em>A Space for the Unbound</em>.</p>
+        <hr class="jurnal-divider">
+    </section>
+
+    <!-- Featured Article -->
+    <div class="featured-wrap">
+        <p class="featured-label">Artikel Pilihan</p>
+        <a href="baca-artikel.html" class="featured-card">
+            <div class="featured-image">
+                <span class="featured-badge">★ Unggulan</span>
             </div>
-        </main>
-
-        <div class="decor-polaroid decor-left" id="polaroid-zoom-trigger">
-            <div class="tape top-center"></div>
-            <div class="photo-content">
-                <div class="photo-img"></div>
-                <p class="caption">Atma, '98</p>
-                <div class="character-desc">
-                    <p>Seorang siswa SMA dengan kekuatan supranatural "Space Dive". Menggunakan Buku Merah magisnya, ia dapat menyelami pikiran orang lain untuk menyembuhkan trauma dan ketakutan terdalam mereka.</p>
-                </div>
+            <div class="featured-body">
+                <span class="featured-category">Psikologi</span>
+                <h2>Menyelami Kedewasaan Emosional Atma & Raya</h2>
+                <p>Di balik kemampuan magis "Space Dive" dan kekuatan tak terbatas Raya, tersimpan narasi psikologis yang mendalam tentang dua jiwa yang berjuang menghadapi kecemasan dan bayang-bayang trauma.</p>
+                <span class="featured-read">Baca Selengkapnya</span>
             </div>
-        </div>
-
-        <div class="decor-polaroid decor-right" id="polaroid-2-zoom-trigger">
-            <div class="tape top-center"></div>
-            <div class="photo-content">
-                <div class="photo-img photo-2"></div>
-                <p class="caption">Raya, '98</p>
-                <div class="character-desc">
-                    <p>Kekasih Atma yang ceria namun menyimpan luka batin yang kelam. Ia memiliki kemampuan luar biasa mengubah realitas yang perlahan mulai mengancam eksistensi kota Loka.</p>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="decor-sticky">
-            <div class="pin center"></div>
-            <p>Jangan lupa kasih makan Admiral! 🐈</p>
-        </div>
+        </a>
     </div>
 
-    <!-- Character Modal Overlay -->
-    <div id="char-modal" class="char-modal-overlay" role="dialog" aria-modal="true" aria-label="Profil Karakter">
-        <div class="char-modal-card" id="char-modal-card">
-            <div class="modal-tape"></div>
-            <div class="modal-photo" id="modal-photo"></div>
-            <p class="modal-caption" id="modal-caption"></p>
-            <hr class="modal-divider">
-            <p class="modal-desc" id="modal-desc"></p>
-            <span class="modal-close-hint">Klik di mana saja untuk menutup</span>
+    <!-- All Articles -->
+    <section class="jurnal-grid-section">
+        <div class="section-header-row">
+            <h2>Semua Tulisan</h2>
         </div>
-    </div>
-
-    <section class="latest-articles">
-        <div class="articles-grid">
-            <a href="baca-artikel.html" class="article-card" data-kategori="psikologi">
-                <div class="card-image-placeholder" style="background-image: url('images/atma-raya.jpg'); background-size: cover; background-position: center;">
-                </div>
-                <div class="card-content">
-                    <h3>Menyelami Kedewasaan Emosional Atma & Raya</h3>
-                    <p>Bedah narasi mendalam mengenai bagaimana game ini menggambarkan trauma masa lalu, kesehatan mental, dan penerimaan diri.</p>
-                    <span class="read-more">Baca Selengkapnya &rarr;</span>
-                </div>
-            </a>
-
-            <a href="artikel-visual.html" class="article-card" data-kategori="desain-visual">
-                <div class="card-image-placeholder" style="background-image: url('images/senja-kota.jpg'); background-size: cover; background-position: center;">
-                </div>
-                <div class="card-content">
-                    <h3>Pixel Art: Menghidupkan Nuansa Senja Jawa Timur</h3>
-                    <p>Analisis teknik pewarnaan (color grading) yang berhasil membangkitkan memori lokal era 90-an yang sangat hangat dan familier.</p>
-                    <span class="read-more">Baca Selengkapnya &rarr;</span>
-                </div>
-            </a>
-
-            <a href="artikel-musik.html" class="article-card" data-kategori="musik">
-                <div class="card-image-placeholder" style="background-image: url('images/kucing-retro.jpg'); background-size: cover; background-position: center;">
-                </div>
-                <div class="card-content">
-                    <h3>Melodi Pendukung Rasa Sakit dan Kebahagiaan</h3>
-                    <p>Ulasan soundtrack latar yang secara ajaib mampu melipatgandakan emosi pemain di setiap adegan krusial dan mendalam.</p>
-                    <span class="read-more">Baca Selengkapnya &rarr;</span>
-                </div>
-            </a>
-
-            <a href="artikel-game.html" class="article-card" data-kategori="desain-game">
-                <div class="card-image-placeholder" style="background-image: url('images/space-dive-rift.jpg'); background-size: cover; background-position: center;">
-                </div>
-                <div class="card-content">
-                    <h3>Mekanika Space Dive sebagai Representasi Empati</h3>
-                    <p>Tinjauan interaktif mengenai bagaimana mengintip pikiran karakter lain di dalam game mencerminkan kerentanan dan empati manusia.</p>
-                    <span class="read-more">Baca Selengkapnya &rarr;</span>
-                </div>
-            </a>
-
-            <a href="artikel-isolasi.html" class="article-card" data-kategori="psikologi">
-                <div class="card-image-placeholder" style="background-image: url('images/lone-wolf-hero.png'); background-size: cover; background-position: center; filter: grayscale(50%) sepia(30%);">
-                </div>
-                <div class="card-content">
-                    <h3>Mengurai "Lone Wolf" di Balik Magis Raya</h3>
-                    <p>Analisis psikologis tentang bagaimana trauma memicu isolasi diri, dan mengapa kita tidak bisa memikul beban sendirian.</p>
-                    <span class="read-more">Baca Selengkapnya &rarr;</span>
-                </div>
-            </a>
-
-            <a href="artikel-komunitas.html" class="article-card" data-kategori="narasi">
-                <div class="card-image-placeholder" style="background-image: url('images/isometric-night-market.png'); background-size: cover; background-position: center; transform: scaleX(-1);">
-                </div>
-                <div class="card-content">
-                    <h3>Denyut Nadi Komunitas Lokal Kota Loka</h3>
-                    <p>Melihat bagaimana interaksi dengan warga sekitar dan pedagang kecil menciptakan ruang aman bagi stabilitas mental remaja.</p>
-                    <span class="read-more">Baca Selengkapnya &rarr;</span>
-                </div>
-            </a>
-        </div>
+        <div class="articles-grid-v2" id="articles-grid"></div>
     </section>
 
     <footer class="footer">
         <p>&copy; 2026 Ruang Nostalgia. Dibuat dengan penuh memori. | Kode sumber tersedia di <a href="https://github.com" target="_blank" style="color: var(--senja-kuning); text-decoration: underline;">GitHub</a></p>
     </footer>
 
-    <script src="script.js"></script>
-    <!-- Interactive Easter Egg: Pet the Cat -->
     <div id="retro-cat" class="retro-cat" title="Kucing jalanan yang sedang tidur...">
         <span class="cat-emoji">🐈</span>
         <span class="cat-zzz">zZ</span>
         <div class="cat-tooltip">Meow~ Kamu menemukan Admiral!</div>
     </div>
-    <!-- Back to Top Button (Checklist 2.2) -->
     <button id="btn-top" class="btn-top" title="Kembali ke Atas">↑</button>
-</body>
 
+    <script src="script.js"></script>
+    <script>
+    const articles = [
+        {
+            title: "Mekanika Space Dive sebagai Representasi Empati",
+            category: "Desain Game",
+            excerpt: "Bagaimana mekanika Space Dive bertindak sebagai metafora brilian tentang empati aktif dan mendengarkan dengan tulus.",
+            href: "artikel-game.html",
+            thumb: "linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.55)), url('images/space-dive-rift.jpg')",
+            tag: "Mekanika"
+        },
+        {
+            title: "Mengurai \u201cLone Wolf\u201d di Balik Magis Raya",
+            category: "Psikologi",
+            excerpt: "Raya memproyeksikan luka emosionalnya menjadi dinding pembatas yang tebal antara dirinya dengan dunia luar.",
+            href: "artikel-isolasi.html",
+            thumb: "linear-gradient(rgba(0,0,0,0.0), rgba(0,0,0,0.45)), url('images/lone-wolf-hero.png')",
+            tag: "Karakter"
+        },
+        {
+            title: "Denyut Nadi Komunitas Lokal Kota Loka",
+            category: "Narasi & Dunia",
+            excerpt: "Warung kelontong, bioskop tua, dan gerobak kaki lima menghidupkan mikrokosmos komunitas yang terasa hangat dan familier.",
+            href: "artikel-komunitas.html",
+            thumb: "linear-gradient(rgba(0,0,0,0.0), rgba(0,0,0,0.45)), url('images/isometric-night-market.png')",
+            tag: "Worldbuilding"
+        },
+        {
+            title: "Melodi Pendukung Rasa Sakit dan Kebahagiaan",
+            category: "Musik",
+            excerpt: "Gitar akustik, piano, dan aransemen lofi bekerja aktif sebagai pelipat ganda emosi di setiap jengkal petualangan.",
+            href: "artikel-musik.html",
+            thumb: "linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.55)), url('images/kucing-retro.jpg')",
+            tag: "Soundtrack"
+        },
+        {
+            title: "Pixel Art: Menghidupkan Nuansa Senja Jawa Timur",
+            category: "Desain Visual",
+            excerpt: "Pixel art bukan keterbatasan teknologi, melainkan pilihan artistik sadar yang membangkitkan memori masa kecil Indonesia.",
+            href: "artikel-visual.html",
+            thumb: "linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.55)), url('images/senja-kota.jpg')",
+            tag: "Estetika"
+        },
+        {
+            title: "Menyelami Kedewasaan Emosional Atma & Raya",
+            category: "Psikologi",
+            excerpt: "Di balik kemampuan magis Space Dive dan kekuatan tak terbatas Raya, bersemayam narasi psikologis yang mendalam tentang dua jiwa remaja.",
+            href: "baca-artikel.html",
+            thumb: "linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.55)), url('images/atma-raya.jpg')",
+            tag: "Emosi"
+        }
+    ];
+
+    const grid = document.getElementById('articles-grid');
+
+    articles.forEach((art, i) => {
+        const card = document.createElement('a');
+        card.className = 'article-card-v2';
+        card.href = art.href;
+        card.innerHTML = `
+            <div class="card-thumb" style="background: ${art.thumb}; background-size: cover !important; background-position: center !important;">
+            </div>
+            <div class="card-body-v2">
+                <h3>${art.title}</h3>
+                <p>${art.excerpt}</p>
+                <div class="card-footer-v2">
+                    <span class="card-read-link">Baca</span>
+                </div>
+            </div>
+        `;
+        grid.appendChild(card);
+
+        // Stagger entrance
+        setTimeout(() => {
+            card.classList.add('visible');
+        }, 80 + i * 90);
+    });
+    </script>
+</body>
 </html>
