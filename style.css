@@ -75,9 +75,10 @@ h3,
    ========================================== */
 .navbar {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    padding: 20px 8%;
+    gap: 12px;
+    padding: 16px 8%;
     background-color: var(--bg-kertas);
     background-image: linear-gradient(to bottom, var(--bg-kertas) 60%, rgba(29, 29, 49, 0.4));
     border-bottom: 1px solid var(--border-garis);
@@ -86,6 +87,16 @@ h3,
     top: 0;
     z-index: 100;
     transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Desktop: kembali ke row layout */
+@media (min-width: 641px) {
+    .navbar {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 0;
+        padding: 20px 8%;
+    }
 }
 
 .logo {
@@ -98,27 +109,41 @@ h3,
     transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+/* Nav pill container */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-garis);
+    border-radius: 999px;
+    padding: 4px 6px;
+}
+
 .nav-links a {
     text-decoration: none;
     color: var(--teks-utama);
-    margin-left: 20px;
-    padding: 6px 2px;
+    margin-left: 0;
+    padding: 6px 16px;
     font-weight: bold;
-    font-size: 0.95rem;
+    font-size: 0.88rem;
     display: inline-block;
-    transition: color 0.3s, transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-radius: 999px;
+    border: 1px solid transparent;
+    transition: color 0.25s, background 0.25s, border-color 0.25s, transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     z-index: 1;
 }
 
 .nav-links a:hover {
     color: var(--senja-jingga) !important;
-    background: transparent !important;
-    background-color: transparent !important;
+    background: rgba(231, 111, 81, 0.08) !important;
+    background-color: rgba(231, 111, 81, 0.08) !important;
     background-image: none !important;
-    padding: 6px 2px !important;
-    border-radius: 0 !important;
-    text-decoration: underline dotted 1px var(--senja-jingga) !important;
-    transform: translateY(-2px);
+    border-color: rgba(231, 111, 81, 0.3) !important;
+    border-radius: 999px !important;
+    padding: 6px 16px !important;
+    text-decoration: none !important;
+    transform: translateY(-1px);
 }
 
 .nav-links a:hover::before,
@@ -134,9 +159,10 @@ h3,
 
 .nav-links a.active {
     color: var(--senja-jingga) !important;
-    background: transparent !important;
-    background-color: transparent !important;
-    border-radius: 0 !important;
+    background: rgba(231, 111, 81, 0.12) !important;
+    background-color: rgba(231, 111, 81, 0.12) !important;
+    border-color: rgba(231, 111, 81, 0.4) !important;
+    border-radius: 999px !important;
 }
 
 /* ==========================================
@@ -1861,6 +1887,83 @@ textarea,
     }
 }
 
+/* 6. Responsive Character Modal (Zoom Mode) for Mobile */
+@media (max-width: 768px) {
+    .char-modal-card {
+        width: 85vw;
+        max-width: 320px;
+        padding: 12px 12px 20px 12px;
+    }
+
+    .char-modal-card .modal-desc {
+        font-size: 0.8rem;
+        line-height: 1.5;
+    }
+
+    .char-modal-card .modal-close-hint {
+        font-size: 0.65rem;
+        bottom: -25px;
+    }
+}
+
+/* 7. Smooth focus state for accessibility (Feedback) */
+a:focus-visible,
+button:focus-visible,
+.decor-polaroid:focus-visible {
+    outline: 2px dashed var(--senja-kuning);
+    outline-offset: 4px;
+}
+
+/* ==========================================
+   16. HALAMAN KARAKTER (GALLERY LAYOUT)
+   ========================================== */
+.karakter-page-wrapper {
+    padding: 60px 8% 100px;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.karakter-header {
+    margin-bottom: 60px;
+}
+
+.karakter-header h1 {
+    font-size: 2.4rem;
+    color: var(--teks-utama);
+    margin-bottom: 10px;
+}
+
+.karakter-header p {
+    color: var(--teks-pudar);
+    font-size: 1.1rem;
+}
+
+.karakter-gallery {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    flex-wrap: wrap;
+    /* Memastikan turun ke bawah otomatis di HP */
+}
+
+/* Mematikan Posisi Absolut khusus untuk halaman Galeri */
+.karakter-gallery .decor-polaroid,
+.karakter-gallery .decor-sticky {
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    margin: 0 !important;
+    /* Efek animasi spaceFloat akan tetap berjalan otomatis! */
+}
+
+.karakter-gallery .decor-sticky {
+    width: 220px !important;
+    height: fit-content;
+}
 /* ==========================================
    MOBILE RESPONSIVE — GLOBAL (max 640px)
    ========================================== */
@@ -1868,16 +1971,22 @@ textarea,
 
     /* ── NAVBAR ── */
     .navbar {
-        padding: 14px 5%;
-        flex-wrap: wrap;
-        gap: 8px;
+        padding: 12px 5%;
+        gap: 10px;
     }
     .logo {
         font-size: 1.2rem;
     }
+    .nav-links {
+        padding: 3px 5px;
+        gap: 4px;
+    }
     .nav-links a {
-        margin-left: 12px;
-        font-size: 0.85rem;
+        font-size: 0.8rem;
+        padding: 5px 13px;
+    }
+    .nav-links a:hover {
+        padding: 5px 13px !important;
     }
 
     /* ── HERO (index.html) ── */
@@ -1958,7 +2067,7 @@ textarea,
         font-size: 1.2rem;
     }
 
-    /* ── ARTICLE PAGE (baca-artikel.html, artikel-*.html) ── */
+    /* ── ARTICLE PAGE ── */
     .article-container {
         padding: 24px 5%;
         margin: 16px auto 32px;
@@ -1991,7 +2100,7 @@ textarea,
         padding: 10px 20px;
     }
 
-    /* ── TENTANG (tentang.html) ── */
+    /* ── TENTANG ── */
     .about-container {
         padding: 40px 5% 60px;
     }
@@ -2009,7 +2118,7 @@ textarea,
         font-size: 0.95rem;
     }
 
-    /* ── KARAKTER (karakter.html) ── */
+    /* ── KARAKTER ── */
     .karakter-page-wrapper {
         padding: 40px 5% 80px;
     }
@@ -2053,82 +2162,4 @@ textarea,
         max-width: 200px;
         font-size: 0.75rem;
     }
-}
-
-/* 6. Responsive Character Modal (Zoom Mode) for Mobile */
-@media (max-width: 768px) {
-    .char-modal-card {
-        width: 85vw;
-        max-width: 320px;
-        padding: 12px 12px 20px 12px;
-    }
-
-    .char-modal-card .modal-desc {
-        font-size: 0.8rem;
-        line-height: 1.5;
-    }
-
-    .char-modal-card .modal-close-hint {
-        font-size: 0.65rem;
-        bottom: -25px;
-    }
-}
-
-/* 7. Smooth focus state for accessibility (Feedback) */
-a:focus-visible,
-button:focus-visible,
-.decor-polaroid:focus-visible {
-    outline: 2px dashed var(--senja-kuning);
-    outline-offset: 4px;
-}
-
-/* ==========================================
-   16. HALAMAN KARAKTER (GALLERY LAYOUT)
-   ========================================== */
-.karakter-page-wrapper {
-    padding: 60px 8% 100px;
-    max-width: 1000px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.karakter-header {
-    margin-bottom: 60px;
-}
-
-.karakter-header h1 {
-    font-size: 2.4rem;
-    color: var(--teks-utama);
-    margin-bottom: 10px;
-}
-
-.karakter-header p {
-    color: var(--teks-pudar);
-    font-size: 1.1rem;
-}
-
-.karakter-gallery {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 50px;
-    flex-wrap: wrap;
-    /* Memastikan turun ke bawah otomatis di HP */
-}
-
-/* Mematikan Posisi Absolut khusus untuk halaman Galeri */
-.karakter-gallery .decor-polaroid,
-.karakter-gallery .decor-sticky {
-    position: relative !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    margin: 0 !important;
-    /* Efek animasi spaceFloat akan tetap berjalan otomatis! */
-}
-
-.karakter-gallery .decor-sticky {
-    width: 220px !important;
-    height: fit-content;
 }
